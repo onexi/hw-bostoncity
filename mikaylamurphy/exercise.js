@@ -35,7 +35,7 @@ exercise.findMax = function(new1, current){
 };
 
 exercise.getTotal = function(new1, current){
-    //var new1 = parseFloat(new1);
+    var new1 = parseFloat(new1);
     current = parseFloat(new1) + parseFloat(current);
     return parseFloat(current);
 };
@@ -82,6 +82,12 @@ exercise.maxEarnings = function() {
 
 */
 
+/*exercise.largerSalary = function largerSalary(item, globaltarget){
+    //console.log(parseFloat(item[11]));
+    console.log(globaltarget);
+    return parseFloat(item[11]) > 150000;
+};
+*/
 exercise.earningsAbove = function(target) {
 
 
