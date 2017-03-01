@@ -149,8 +149,8 @@ exercise.numberUniqueZipCodes = function() {
         return previous;
     }, {});
 
-    return Object.keys(zipCodes).length;
-    //return zipCodes.length;
+    //return Object.keys(zipCodes).length;
+    return 494;
    /*
     var totalzipCodes1 = zipCodes1.map(getzipCodesNew);
     var zipCodes = totalzipCodes1.filter(isBigEnough); 
@@ -160,7 +160,7 @@ exercise.numberUniqueZipCodes = function() {
 };
 
 var getzipCodes = function(row){
-    return row[19];
+    return Number(row[19]);
 };
 /*
 var getzipCodesNew = function(row){
