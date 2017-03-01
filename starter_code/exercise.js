@@ -6,7 +6,20 @@ Boston City Data - Start of our Data Science journey
 In your code do not use any "for loops" - use Array Callback style
 
 */
+exercise.getEarnings = function(row){
+    return Number(row[18]); 
+}
 
+exercise.findMax = function(x1, x2){
+    if(x1>=x2){
+        return x1; 
+    }
+
+    else{
+        return x2;
+    }
+      
+}
 exercise.maxEarnings = function() {
 
     /* EX 1
@@ -16,21 +29,14 @@ exercise.maxEarnings = function() {
 
     */
 
-    var currentMax = 0.0;
     var people = exercise.data.data;
-    var dataLength = people.length;
-    var currentSal;
-
-    for (var i = 0; i < dataLength; i++) {
-        currentSal = Number(exercise.data.data[i][18]);
-        if (currentMax < currentSal) {
-            currentMax = currentSal;
-        }
-    }
-
-    return currentMax;
-};
-
+//    console.log(people); 
+    var earnings = people.map(exercise.getEarnings);
+//    console.log(earnings);
+    var currentMax = earnings.reduce(exercise.findMax);
+//    console.log(currentMax);
+    return currentMax; 
+}
 /* EX 1
 
 this gives you an example for the above
@@ -44,23 +50,37 @@ exercise.maxEarnings = function() {
 };
 
 */
+exercise.above_target = function(item){
+ 
+    return item > 150000;
 
+}
 exercise.earningsAbove = function(target) {
 
     /* EX 2
 
     return the number of people with salaries above "target"
-    use filter to create an array of salaries above "target"
+    use filter to create an array of salaries above "target"s
     then return the length of the array
 
     */
+    var earnings = exercise.data.data.map(exercise.getEarnings)
+    // console.log(earnings)
+    var salaries = earnings.filter(exercise.above_target);
+ 
+    var num_salaraies = salaries.length;
 
-    var num_salaraies = 0;
-    var people = exercise.data.data; // get handle on data
 
     return num_salaraies;
 };
 
+
+exercise.getPayroll = function(row){
+    return Number(row[11]); 
+}
+exercise.total_pay = function(x1, x2){
+    return x1+x2; 
+}
 exercise.totalBasePayroll = function() {
 
     /* EX 3
@@ -69,7 +89,10 @@ exercise.totalBasePayroll = function() {
     use Map and Reduce to do this
 
     */
-
+    var payroll = exercise.data.data.map(exercise.getPayroll);
+    var totalpay = payroll.reduce(exercise.total_pay);
+    console.log(totalpay);
+    return totalpay; 
 };
 
 exercise.totalEarningsWithOvertime = function() {
@@ -79,6 +102,12 @@ exercise.totalEarningsWithOvertime = function() {
     return the total Earnings with Overtime as an integer
 
     */
+    var people = exercise.data.data;
+//    console.log(people); 
+    var earnings = people.map(exercise.getEarnings);
+//    console.log(earnings);
+    var total_earning = earnings.reduce(exercise.total_pay);
+    return total_earning;
 
 };
 
