@@ -55,17 +55,16 @@ exercise.earningsAbove = function(target) {
 
     var earnings = people.map(getEarnings); 
 
-    var num_salaries = 0;
+    //var num_salaries = 0;
 
-    var ifAbove = function(item){
-        if(item > exercise.target){
-             num_salaries += 1;
-        }
+    var ifAbove = function(element){
+        return element > exercise.target;
     };
 
-    var salariesAbove = earnings.filter(ifAbove);
+    var filtered = earnings.filter(ifAbove);
 
-    return num_salaries;
+    console.log(JSON.stringify(filtered));
+    return filtered.length;
 };
 
 exercise.totalBasePayroll = function() {
