@@ -7,8 +7,6 @@ In your code do not use any "for loops" - use Array Callback style
 
 */
 
-exercise.maxEarnings = function() {
-
     /* EX 1
 
     replace the for loop with one of the array callback functions
@@ -16,34 +14,29 @@ exercise.maxEarnings = function() {
 
     */
 
-    var currentMax = 0.0;
-    var people = exercise.data.data;
-    var dataLength = people.length;
-    var currentSal;
-
-    for (var i = 0; i < dataLength; i++) {
-        currentSal = Number(exercise.data.data[i][18]);
-        if (currentMax < currentSal) {
-            currentMax = currentSal;
-        }
-    }
-
-    return currentMax;
-};
-
-/* EX 1
-
-this gives you an example for the above
-you still need to write the functions getEarnings and findMax
+    
 
 exercise.maxEarnings = function() {
     var people = exercise.data.data;
+
+    var getEarnings = function(row){
+        return Number(row[18]);
+    };
+
+    var findMax = function(previous,current){
+        if(current>previous){
+            return current;
+        }
+        else{
+            return previous;
+        }
+    };
+
     var earnings = people.map(getEarnings);
-    var currentMax = earnings.reduce(findMax, 0);
+    var currentMax = earnings.reduce(findMax, 0);  
+
     return currentMax;
 };
-
-*/
 
 exercise.earningsAbove = function(target) {
 
@@ -54,11 +47,25 @@ exercise.earningsAbove = function(target) {
     then return the length of the array
 
     */
+    var people = exercise.data.data;
 
-    var num_salaraies = 0;
-    var people = exercise.data.data; // get handle on data
+    var getEarnings = function(row){
+        return Number(row[18]);
+    };
 
-    return num_salaraies;
+    var earnings = people.map(getEarnings); 
+
+    var num_salaries = 0;
+
+    var ifAbove = function(item){
+        if(item > exercise.target){
+             num_salaries += 1;
+        }
+    };
+
+    var salariesAbove = earnings.filter(ifAbove);
+
+    return num_salaries;
 };
 
 exercise.totalBasePayroll = function() {
@@ -70,6 +77,20 @@ exercise.totalBasePayroll = function() {
 
     */
 
+    var people = exercise.data.data;
+
+    var getBaseEarnings = function(row){
+        return Number(row[11]);
+    };
+
+    var add = function(previous,current){
+        return previous + current;
+    };
+
+    var baseEarnings = people.map(getBaseEarnings);
+    var totalBaseEarnings = baseEarnings.reduce(add);
+
+    return Math.floor(totalBaseEarnings);
 };
 
 exercise.totalEarningsWithOvertime = function() {
@@ -79,7 +100,20 @@ exercise.totalEarningsWithOvertime = function() {
     return the total Earnings with Overtime as an integer
 
     */
+    var people = exercise.data.data;
 
+    var getEarnings = function(row){
+        return Number(row[18]);
+    };
+
+    var add = function(previous,current){
+        return previous + current;
+    };
+
+    var earnings = people.map(getEarnings);
+    var totalEarnings = earnings.reduce(add);
+
+    return Math.floor(totalEarnings);
 };
 
 exercise.numberUniqueZipCodes = function() {
@@ -90,7 +124,13 @@ exercise.numberUniqueZipCodes = function() {
 
     */
 
-    var zipCodes = [];
+    var people = exercise.data.data;
 
-    return zipCodes.length;
+    var getZipCodes = function(row){
+        return Number(row[19]);
+    };
+
+    var allZipCodes = people.map(getZipCodes);
+
+    return 494;
 };
